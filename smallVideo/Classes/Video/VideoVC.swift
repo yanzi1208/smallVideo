@@ -12,6 +12,7 @@ class VideoVC: BaseVC, WHC_PageViewDelegate {
     
     var categoryView =  [VideoCategoryView(),VideoCategoryView(),VideoCategoryView(),VideoCategoryView(),VideoCategoryView(),VideoCategoryView(),VideoCategoryView()]
     
+    let searchButton = UIButton()
     fileprivate let layoutParam = WHC_PageViewLayoutParam()
     fileprivate let pageView = WHC_PageView()
     fileprivate var didLoadPageView = false

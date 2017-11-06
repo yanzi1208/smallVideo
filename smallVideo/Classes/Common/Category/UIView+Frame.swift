@@ -154,3 +154,14 @@ extension UIView {
         }
     }
 }
+
+extension UIView {
+    func screen_height() -> CGFloat{
+        return UIScreen.main.bounds.height
+    }
+    
+    func screen_width() -> CGFloat {
+        return UIScreen.main.bounds.width
+    }
+    
+}

@@ -227,10 +227,8 @@ class VideoCategoryCell: UITableViewCell {
     @objc func collectButtonTouched() {
         collectButton.isSelected = !collectButton.isSelected
         
-      
-        
         let url = "collect?id&deviceId=\(listModel.deviceId)&userName=\(listModel.userName!)&title=\(listModel.title!)&url1=\(listModel.url1!)&url2=\(listModel.url2!)"
-        HttpTools.requestData(.get, URLString: url) { (result) in
+        HttpTools.requestData(.get, URLString: url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!) { (result) in
             
             print("\nhahah\n\(result)")
         }

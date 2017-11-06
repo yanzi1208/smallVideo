@@ -7,33 +7,45 @@
 //
 
 import UIKit
+import HandyJSON
 
-class VideoListModel : Reflect   {
+class VideoListModel : HandyJSON   {
 
-    var createTime : NSNumber = NSNumber(value: 0)
-    var deviceId : NSNumber = NSNumber(value: 0)
-    var videoId : NSNumber = NSNumber(value: 0)
+    var createTime : Int = 0
+    var deviceId : Int = 0
+    var videoId : Int = 0
     var imageUrl : String?
     var logo : String?
-    var points : NSNumber = NSNumber(value: 0)
+    var points : Int = 0
     var size : String?
     var tag : String?
     var title : String?
-    var type : NSNumber = NSNumber(value: 0)
-    var updateTime : NSNumber = NSNumber(value: 0)
+    var type : Int = 0
+    var updateTime : Int = 0
     var url1 : String?
-    var url2 : String?
-    var userId : NSNumber = NSNumber(value: 0)
+    var url2 : String? = ""
+    var userId : Int = 0
     var userName : String?
+    required init() {
+    }
+    
+    func mapping(mapper: HelpingMapper) {
+        mapper <<<
+        videoId <-- "id"
+    }
     
     class func toVidelListModel(dataArr: NSArray) -> [VideoListModel] {
-        let model = VideoListModel.parses(arr: dataArr as NSArray)
-        return model as! [VideoListModel]
+        var modelArr : [VideoListModel] = []
+        for dict in dataArr {
+            let model = VideoListModel.deserialize(from : dict as? NSDictionary)
+            modelArr.append(model!)
+        }
+        return modelArr
     }
 
-    override func mappingDict() -> [String : String]? {
-        return ["videoId": "id"]
-    }
+//    override func mappingDict() -> [String : String]? {
+//        return ["videoId": "id"]
+//    }
 }
 
 /*

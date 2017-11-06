@@ -10,6 +10,8 @@ import UIKit
 
 let SCREEN_WIDTH = UIScreen.main.bounds.width
 let SCREEN_HEIGHT = UIScreen.main.bounds.height
+let STATUBAR_HEIGHT = 22;
+let NAVBAR_HEIGHT = 64;
 let KScaleX = (SCREEN_WIDTH/320.0)
 let KScaleY = (SCREEN_HEIGHT/568.0)
 

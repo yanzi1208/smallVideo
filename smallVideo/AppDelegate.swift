@@ -21,10 +21,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.backgroundColor = UIColor.white
         window?.makeKeyAndVisible()
         
-        return true
+        // Setting a Keychain item value
+//        let keychainItemWrapper = KeychainItemWrapper(identifier: "identifier for this item", accessGroup: "access group if shared")
+//        keychainItemWrapper["superSecretKey"] = "aSuperSecretValue" as AnyObject?
+   
+        // Getting a Keychain item value
+//        let keychainItemWrapper = KeychainItemWrapper(identifier: "identifier for this item", accessGroup: "access group if shared")
+//        let superSecretValue = keychainItemWrapper["superSecretKey"] as? String?
+//        print("The super secret value is: \(superSecretValue)")
+       return true
     }
+    
 
     func statusBarOrientationChangen(notification : NSNotification) {
+        
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let device = NSData(data: deviceToken)
+        let deviceId = device.description.replacingOccurrences(of:"<", with:"").replacingOccurrences(of:">", with:"").replacingOccurrences(of:" ", with:"")
         
     }
     

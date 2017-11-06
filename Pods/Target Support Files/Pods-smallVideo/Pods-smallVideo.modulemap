@@ -1,0 +1,6 @@
+framework module Pods_smallVideo {
+  umbrella header "Pods-smallVideo-umbrella.h"
+
+  export *
+  module * { export * }
+}
