@@ -42,13 +42,13 @@ class VideoCategoryCell: UITableViewCell {
             nameLable.text = listModel.userName
             timeLabel.text = listModel.size
             playCountLabel.text = "\(listModel.points) 次播放"
-            let imgUrl = URL(string: listModel.imageUrl!)
+            let imgUrl = URL(string: listModel.imageUrl)
             bgImageView.kf.setImage(with: imgUrl, placeholder: nil, options: [.transition(ImageTransition.fade(1))], progressBlock: { receivedSize, totalSize in
                 print("\(receivedSize)/\(totalSize)")
             }, completionHandler: { image, error, cacheType, imageURL in
                 print(" Finished")
             })
-            let headUrl = URL(string: listModel.logo!)
+            let headUrl = URL(string: listModel.logo)
             headButton.kf.setBackgroundImage(with: headUrl, for: .normal)
         }
         
@@ -111,7 +111,7 @@ class VideoCategoryCell: UITableViewCell {
         
         timeLabel.text = "2M"
         timeLabel.font = fontSize(10)
-        timeLabel.backgroundColor = rgb(50, 50, 50)
+        timeLabel.backgroundColor = rgb(r:50, g:50, b:50)
         timeLabel.textAlignment = .center
         timeLabel.textColor = UIColor.white
         timeLabel.layer.cornerRadius = 10
@@ -119,7 +119,7 @@ class VideoCategoryCell: UITableViewCell {
         contentView.addSubview(timeLabel)
         
         playImageButton.setImage(imageNamed("new_play_video_44x44_"), for: .normal)
-        playImageButton.setBackgroundImage(imageWithColor(rgba(100, 100, 100, 0.3)), for: .normal)
+        playImageButton.setBackgroundImage(imageWithColor(rgba(r:100, g:100, b:100, a:0.3)), for: .normal)
         playImageButton.addTarget(self, action: #selector(playImageButtonTouched), for: .touchUpInside)
         contentView.addSubview(playImageButton)
         
@@ -227,11 +227,18 @@ class VideoCategoryCell: UITableViewCell {
     @objc func collectButtonTouched() {
         collectButton.isSelected = !collectButton.isSelected
         
-        let url = "collect?id&deviceId=\(listModel.deviceId)&userName=\(listModel.userName!)&title=\(listModel.title!)&url1=\(listModel.url1!)&url2=\(listModel.url2!)"
-        HttpTools.requestData(.get, URLString: url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!) { (result) in
+        let param = ["device_id": listModel.deviceId,
+                      "userName": listModel.userName,
+                      "title": listModel.title,
+                      "url1": listModel.url1,
+                      "url2": listModel.url2] as [String : AnyObject]
+        
+        HttpTool.shareInstance.request_collect(params: param, success: { (result) in
+            print("collect --- \(result)")
+        }) { (error) in
             
-            print("\nhahah\n\(result)")
         }
+        
     }
     
     @objc func moreButtonTouched() {

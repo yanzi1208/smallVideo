@@ -23,7 +23,7 @@ class FeedbackVC: BaseVC, KYTitleBarDelegate {
         tTextView.layer.cornerRadius = 3
         tTextView.layer.masksToBounds = true
         tTextView.layer.borderWidth = 1
-        tTextView.layer.borderColor = rgb(180, 180, 180).cgColor
+        tTextView.layer.borderColor = rgb(r:180, g:180, b:180).cgColor
         return tTextView;
     
     }()
@@ -33,7 +33,7 @@ class FeedbackVC: BaseVC, KYTitleBarDelegate {
         tTextFiled.layer.masksToBounds = true
         tTextFiled.layer.borderWidth = 1
         tTextFiled.placeholder = "QQ、邮件或者电话..."
-        tTextFiled.layer.borderColor = rgb(180, 180, 180).cgColor
+        tTextFiled.layer.borderColor = rgb(r:180, g:180, b:180).cgColor
         return tTextFiled
     }()
     

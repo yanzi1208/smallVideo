@@ -24,13 +24,14 @@ class ProfileHeaderCell: UIView {
     
     lazy var styleButton: UIButton = {
         let button = UIButton.init()
-        button.setImage(imageNamed("nighticon_profile_24x24_"), for: .normal)
+        button.theme_setImage(["nighticon_profile_24x24_","dayicon_profile_night_24x24_" ], forState: .normal)
         button.setTitle("夜间", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
         button.setTitleColor(UIColor.black, for: .normal)
         button.imageEdgeInsets = UIEdgeInsetsMake(-15, 13, 0, 0)
         button.titleEdgeInsets = UIEdgeInsetsMake(33, -21, 0, 0)
-        button.addTarget(self, action: #selector(styleButtonTouch), for: .touchUpInside)
+        button.addTarget(self, action: #selector(ProfileHeaderCell.styleButtonTouch(sender:)), for: .touchUpInside)
+        
         return button
     }()
     
@@ -75,10 +76,20 @@ class ProfileHeaderCell: UIView {
         self.collectButtonBlock?()
         print("收藏")
     }
-    @objc func styleButtonTouch() {
+    @objc func styleButtonTouch(sender: UIButton) {
+
+        let theme = MyThemes.current
+        switch theme {
+        case .light:
+            print("light")
+            sender.setTitle("夜间", for: .normal)
+            MyThemes.switchTo(theme: .night)
+        case .night:
+            print("night")
+            sender.setTitle("白天", for: .normal)
+            MyThemes.switchTo(theme: .light)
+        }
         
-        
-        print("夜间")
     }
     
     public class func getProfileHeaderCellHeight() -> CGFloat {

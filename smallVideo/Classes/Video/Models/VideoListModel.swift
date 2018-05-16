@@ -14,18 +14,18 @@ class VideoListModel : HandyJSON   {
     var createTime : Int = 0
     var deviceId : Int = 0
     var videoId : Int = 0
-    var imageUrl : String?
-    var logo : String?
+    var imageUrl : String = ""
+    var logo : String = ""
     var points : Int = 0
-    var size : String?
-    var tag : String?
-    var title : String?
+    var size : String = ""
+    var tag : String = ""
+    var title : String = ""
     var type : Int = 0
     var updateTime : Int = 0
-    var url1 : String?
-    var url2 : String? = ""
+    var url1 : String = ""
+    var url2 : String = ""
     var userId : Int = 0
-    var userName : String?
+    var userName : String = ""
     required init() {
     }
     

@@ -37,10 +37,10 @@ class VideoCategoryView: UITableView ,UITableViewDataSource, UITableViewDelegate
     
     func loadDataArr(_ category : String, _ index : Int) {
 
-        HttpTools.requestData(.get, URLString: "queryPdList?type=\(index)&deviceId=1&offset=0") { (result) in
-        print("\(category)--\(result)")
-            self.dataArr = VideoListModel.toVidelListModel(dataArr: result as! NSArray) as NSArray
-        }
+//        HttpTools.requestData(.get, URLString: "queryPdList?type=\(index)&deviceId=1&offset=0") { (result) in
+//        print("\(category)--\(result)")
+//            self.dataArr = VideoListModel.toVidelListModel(dataArr: result as! NSArray) as NSArray
+//        }
     }
     
     // MARK: - tableViewDataSource
@@ -110,7 +110,7 @@ extension VideoCategoryView : VideoCategoryCellDelegate {
             print("点击了返回按钮")
         }
         let listModel = self.dataArr[cellIndex] as! VideoListModel;
-        let asset = BMPlayerResource(url: URL(string: listModel.url1!)!, name: listModel.title!)
+        let asset = BMPlayerResource(url: URL(string: listModel.url1)!, name: listModel.title)
         player?.setVideo(resource: asset)
     }
 }

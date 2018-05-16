@@ -54,7 +54,7 @@ class KYTitleBar: UIView {
         
         
         let bottomLine = UIView.init(frame: CGRect(x: 0, y: 63, width: SCREEN_WIDTH, height: 1))
-        bottomLine.backgroundColor = rgb(230, 230, 230)
+        bottomLine.backgroundColor = rgb(r:230, g:230, b:230)
         addSubview(bottomLine)
         
     }

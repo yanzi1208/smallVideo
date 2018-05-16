@@ -25,6 +25,8 @@ class ProfileVC: BaseVC, UIScrollViewDelegate, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(changeTheme(notification:)), name:NSNotification.Name(rawValue : NotificationString.switchTheme.desc) , object: nil)
+        
         headerBgView = UIImageView.init(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: headerHeight+20))
         headerBgView.image = imageNamed("wallpaper_profile")
         view.addSubview(headerBgView)
@@ -33,14 +35,13 @@ class ProfileVC: BaseVC, UIScrollViewDelegate, UITableViewDelegate, UITableViewD
         scrollView.delegate = self
         scrollView.isScrollEnabled  = true
         scrollView.contentSize = CGSize(width: SCREEN_WIDTH, height: SCREEN_HEIGHT-64)
-//        scrollView.backgroundColor = UIColor.red
         view.addSubview(scrollView)
         
         headerView = ProfileVCHeader.init(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: headerHeight))
         scrollView.addSubview(headerView)
         
         let bgView = ProfileHeaderCell.init(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: ProfileHeaderCell.getProfileHeaderCellHeight()))
-        bgView.backgroundColor = rgb(229, 229, 229)
+        bgView.backgroundColor = rgb(r:229, g:229, b:229)
         bgView.collectButtonBlock = {
             self.navigationController?.pushViewController(CollectVC(), animated: true)
         }
@@ -53,6 +54,22 @@ class ProfileVC: BaseVC, UIScrollViewDelegate, UITableViewDelegate, UITableViewD
         tableView.tableFooterView = UIView()
         scrollView.addSubview(tableView)
         
+    }
+    
+    @objc func changeTheme(notification : NSNotification) {
+//
+//        let userInfo = notification.userInfo as NSDictionary?
+//        if let currenttheme = userInfo?.object(forKey:  constString.themeType.desc()) as? ThemeType {
+//            switch currenttheme {
+//            case .light:
+//                tableView.backgroundColor = UIColor.white
+//            case .black:
+//                tableView.backgroundColor = rgb(r: 50, g: 50, b: 50)
+//
+//            }
+//        }else {
+//            print(notification)
+//        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -79,7 +96,7 @@ class ProfileVC: BaseVC, UIScrollViewDelegate, UITableViewDelegate, UITableViewD
         }else if indexPath.row == 4 {
             cell.textLabel?.text = "系统设置"
         }
-        
+        cell.backgroundColor = UIColor.clear
         return cell
     }
 
